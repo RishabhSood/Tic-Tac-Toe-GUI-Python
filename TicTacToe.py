@@ -18,7 +18,7 @@ def myGame():
     window = tkinter.Tk()
     
     window.title("Tic Tac Toe Mania")
-    window.geometry("500x340")
+    window.geometry("500x380")
     
     lbl = Label(window,text="Tic-tac-toe Game",font=('Helvetica','15'), padx = 10, pady = 10)
     lbl.grid(row=1,column=1)
@@ -260,6 +260,14 @@ def myGame():
             messagebox.showinfo("Tie", "Match Tied!!!  Try again :)")
             window.destroy()
     
+    def newGame():
+        newGame = messagebox.askquestion("New Game", "Do you wish to start a new game?")
+        if newGame == 'yes':
+            window.destroy()
+            myGame()
+        else:
+            window.destroy()
+    
     def win(player):
         if player == ply1.get():
             player = pl1_name.get()
@@ -267,12 +275,8 @@ def myGame():
             player = pl2_name.get()
         ans = "Game complete " +player + " wins ";
         messagebox.showinfo("Congratulations", ans)
-        newGame = messagebox.askquestion("New Game", "Do you wish to start a new game?")
-        if newGame == 'yes':
-            window.destroy()
-            myGame()
-        else:
-            window.destroy()
+        newGame()
+        
     
     k = 50
     
@@ -294,6 +298,10 @@ def myGame():
     btn8.place(x=110+k, y=240)
     btn9 = Button(window, text=" ",bg="Black", fg="White",width=3,height=1,font=('Helvetica','20'),command=clicked9)
     btn9.place(x=170+k, y=240)
+    
+    new_btn = Button(window, text=" ",bg="Green", fg="White",font=('Helvetica','10'),command=newGame)
+    new_btn["text"] = "New Game"
+    new_btn.place(x = 160, y = 320)
     
     window.mainloop()
 
